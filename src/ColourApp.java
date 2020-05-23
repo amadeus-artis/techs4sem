@@ -1,7 +1,10 @@
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -17,12 +20,11 @@ public class ColourApp extends Application {
     private VBox initInterface() {
 
         //------ Creating Boxes ------//
-        VBox big = new VBox();
-        HBox topViews = new HBox();
-        HBox botViews = new HBox();
+        VBox big = new VBox(25);
+        HBox topViews = new HBox(25);
+        HBox botViews = new HBox(25);
 
         //------ First Image - Green ------//
-
         WritableImage greenBox = new WritableImage(120, 100);
         PixelWriter pw1 = greenBox.getPixelWriter();
         for (int x = 0; x < 120; x++)
@@ -55,7 +57,7 @@ public class ColourApp extends Application {
             for (int y = 0; y < 100; y++)
                 pw4.setColor(x, y, Color.hsb(x, y/99, 1));
 
-        ImageView fourth = new ImageView(ColourStripe);
+        ImageView fourthPic = new ImageView(ColourStripe);
 
         //------ Fifth Image LCH Box ------//
         WritableImage LCHBox = new WritableImage(360, 100);
@@ -64,11 +66,11 @@ public class ColourApp extends Application {
             for (int y = 0; y < 100; y++)
                 pw5.setColor(x, y, LCH.colorFromLCH(80, y, x));
 
-        ImageView fifth = new ImageView(LCHBox);
+        ImageView fifthPic = new ImageView(LCHBox);
 
         //------ Sixth Image Photo ------//
         Image photo = new Image
-                ("https://upload.wikimedia.org/wikipedia/commons/0/0a/The_Great_Wave_off_Kanagawa.jpg");
+                ("https://lh3.googleusercontent.com/proxy/RD86bi-USgd1Tmc7ZDp0khi5XS_2wc4Z2EVz9NDc9WkG3RH9lU170vlaKkuTsBnb6VBsOrpdj8mILW5MORm4L8amOXvDk5u4FUr3aVlEpHen1eCZd-B5HSfDbP9JZGktIF19eaBRX39-Ewbk0OCHV5alDXW-ymHKQZPRQtSXHVJZrs0LDziJiRg6O20");
         ImageView botSixth = new ImageView(photo);
         botSixth.setFitHeight(256);
         botSixth.setFitWidth(256);
@@ -84,11 +86,15 @@ public class ColourApp extends Application {
                         0.7152*photoColour.getGreen() + 0.0722*photoColour.getBlue();
                 pw6.setColor(x, y, Color.hsb(0, 0, greyness));
             }
+
         ImageView botSeventh = new ImageView(blackWhite);
 
         topViews.getChildren().addAll(topOne, topTwo, topThree);
         botViews.getChildren().addAll(botSixth, botSeventh);
-        big.getChildren().addAll(topViews, fourth, fifth, botViews);
+        big.getChildren().addAll(topViews, fourthPic, fifthPic, botViews);
+
+        topViews.setAlignment(Pos.CENTER);
+        botViews.setAlignment(Pos.CENTER);
 
         return big;
     }
