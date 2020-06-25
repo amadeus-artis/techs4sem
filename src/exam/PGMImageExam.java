@@ -33,7 +33,6 @@ public class PGMImageExam {
                 gradient.setPixel(x, y, (x+y)%256);
             }
         }
-        gradient.print();
         gradient.saveTo("gradient.pgm");
     }
 
