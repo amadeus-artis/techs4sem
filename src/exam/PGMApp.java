@@ -67,7 +67,6 @@ public class PGMApp extends Application {
             File picture = fileChooser.showOpenDialog(stage);
             try {
                 Path myPath = Path.of(picture.getName());
-                System.out.println(myPath);
                 Scanner scanner = new Scanner(myPath, StandardCharsets.UTF_8);
                 scanner.next();
                 int imageWidth = Integer.parseInt(scanner.next());
@@ -75,8 +74,8 @@ public class PGMApp extends Application {
 
                 WritableImage fromPGM = new WritableImage(imageWidth, imageHeight);
                 PixelWriter pw = fromPGM.getPixelWriter();
-                for (int x = 0; x < imageWidth; x++) {
-                    for (int y = 0; y < imageHeight; y++) {
+                for (int y = 0; y < imageHeight; y++) {
+                    for (int x = 0; x < imageWidth; x++) {
                         double greyness = Integer.parseInt(scanner.next());
                         pw.setColor(x, y, Color.gray(greyness/255));
                     }
