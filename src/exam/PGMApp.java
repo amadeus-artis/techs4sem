@@ -72,28 +72,23 @@ public class PGMApp extends Application {
                 scanner.next();
                 int imageWidth = Integer.parseInt(scanner.next());
                 int imageHeight = Integer.parseInt(scanner.next());
-                int maxGrey = Integer.parseInt(scanner.next());
 
                 WritableImage fromPGM = new WritableImage(imageWidth, imageHeight);
                 PixelWriter pw = fromPGM.getPixelWriter();
                 for (int x = 0; x < imageWidth; x++) {
                     for (int y = 0; y < imageHeight; y++) {
                         double greyness = Integer.parseInt(scanner.next());
-                        System.out.println(greyness/255);
                         pw.setColor(x, y, Color.gray(greyness/255));
                     }
                 }
                 File outputFile = new File("output.png");
                 BufferedImage bImage = SwingFXUtils.fromFXImage(fromPGM, null);
                 ImageIO.write(bImage, "png", outputFile);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             imageName.setText(picture.getName());
         });
-
         app.getChildren().addAll(imageName, userImage, loadImage, loadPGMImage);
         return app;
     }
