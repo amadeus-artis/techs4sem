@@ -94,7 +94,7 @@ public class ColourApp extends Application {
         big.getChildren().addAll(topViews, fourthPic, fifthPic, botViews);
 
         topViews.setAlignment(Pos.CENTER);
-        botViews.setAlignment(Pos.CENTER);
+        botViews.setAlignment(Pos.CENTER);  
 
         return big;
     }
